@@ -1,0 +1,98 @@
+[gd_scene load_steps=7 format=3 uid="uid://djm1x4rlyfk4x"]
+
+[ext_resource type="PackedScene" uid="uid://dr5akk0e8iy5o" path="res://Scenes/wheel.tscn" id="1_8fnda"]
+[ext_resource type="Script" path="res://code/Player.gd" id="1_qnsl4"]
+[ext_resource type="Texture2D" uid="uid://b8p4wi24v732n" path="res://motor bikes/frontSus.png" id="3_8of4y"]
+[ext_resource type="Texture2D" uid="uid://bwg3tt2iastgt" path="res://motor bikes/bodySus.png" id="3_e0jwy"]
+[ext_resource type="PackedScene" uid="uid://db0sgod3he2eg" path="res://Scenes/particle.tscn" id="4_ruqd4"]
+[ext_resource type="Texture2D" uid="uid://biq5wck2eechc" path="res://motor bikes/bodyNofront.png" id="5_n6fpu"]
+
+[node name="Player" type="RigidBody2D" groups=["Player"]]
+mass = 3.0
+gravity_scale = 9.0
+script = ExtResource("1_qnsl4")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-99, 149, -68, 170, 48, 175, 123, 129, 207, 6, 270, -25, 222, -103, 78, -91, -58, 2, -314, -55, -276, -29, -322, -6, -233, -12, -64, 89)
+
+[node name="FrontSus" type="RigidBody2D" parent="."]
+position = Vector2(1.00043, -1.00006)
+mass = 0.5
+gravity_scale = 9.0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="FrontSus"]
+polygon = PackedVector2Array(213, 19, 291, 188, 329, 168, 234, 13)
+
+[node name="PinJoint2D" type="PinJoint2D" parent="FrontSus"]
+position = Vector2(304, 171)
+node_a = NodePath("..")
+node_b = NodePath("WheelFront")
+
+[node name="WheelFront" parent="FrontSus/PinJoint2D" instance=ExtResource("1_8fnda")]
+
+[node name="Sprite2D" type="Sprite2D" parent="FrontSus"]
+texture = ExtResource("3_8of4y")
+
+[node name="GrooveJoint2D" type="GrooveJoint2D" parent="FrontSus"]
+position = Vector2(237, 36.0001)
+rotation = -0.455082
+node_a = NodePath("../..")
+node_b = NodePath("..")
+
+[node name="FrontSusJoint1" type="PinJoint2D" parent="FrontSus/GrooveJoint2D"]
+position = Vector2(-70, 1)
+node_a = NodePath("../../..")
+node_b = NodePath("../..")
+softness = 0.2
+
+[node name="FrontSusJoint2" type="PinJoint2D" parent="FrontSus/GrooveJoint2D"]
+position = Vector2(70, 0)
+node_a = NodePath("../../..")
+node_b = NodePath("../..")
+softness = 0.2
+
+[node name="FrontSusJoint3" type="PinJoint2D" parent="FrontSus/GrooveJoint2D"]
+position = Vector2(0, 90)
+node_a = NodePath("../../..")
+node_b = NodePath("../..")
+softness = 0.2
+
+[node name="BackSusJoint" type="PinJoint2D" parent="."]
+position = Vector2(-118, 119)
+node_a = NodePath("..")
+node_b = NodePath("BackSuspension")
+bias = 0.9
+
+[node name="BackSuspension" type="RigidBody2D" parent="BackSusJoint"]
+position = Vector2(118, -119)
+mass = 0.5
+gravity_scale = 9.0
+
+[node name="SusCollisionPoly" type="CollisionPolygon2D" parent="BackSusJoint/BackSuspension"]
+position = Vector2(-127, 77)
+polygon = PackedVector2Array(-131, 85, -112, 114, 39, 53, 17, 11)
+
+[node name="BackWheelJoint" type="PinJoint2D" parent="BackSusJoint/BackSuspension"]
+position = Vector2(-229, 169)
+node_a = NodePath("..")
+node_b = NodePath("WheelBack")
+
+[node name="WheelBack" parent="BackSusJoint/BackSuspension/BackWheelJoint" instance=ExtResource("1_8fnda")]
+
+[node name="BackPinJoint2" type="PinJoint2D" parent="BackSusJoint/BackSuspension"]
+position = Vector2(-227, 170)
+node_a = NodePath("../../..")
+node_b = NodePath("..")
+softness = 0.5
+
+[node name="SuspensionSprite" type="Sprite2D" parent="BackSusJoint/BackSuspension"]
+texture = ExtResource("3_e0jwy")
+
+[node name="BulletSpawnMarker" type="Marker2D" parent="."]
+position = Vector2(399, 1)
+
+[node name="BikeSprite" type="Sprite2D" parent="."]
+texture = ExtResource("5_n6fpu")
+
+[node name="Particle" parent="." instance=ExtResource("4_ruqd4")]
+position = Vector2(-259, 284)

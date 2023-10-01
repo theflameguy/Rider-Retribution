@@ -1,0 +1,45 @@
+[gd_scene load_steps=3 format=3 uid="uid://bj254bokcf0qb"]
+
+[ext_resource type="PackedScene" uid="uid://dr5akk0e8iy5o" path="res://Scenes/wheel.tscn" id="1_rbxqx"]
+[ext_resource type="Texture2D" uid="uid://b8p4wi24v732n" path="res://motor bikes/frontSus.png" id="2_6n6bb"]
+
+[node name="FrontSus" type="RigidBody2D"]
+position = Vector2(1.00043, -1.00006)
+mass = 0.01
+gravity_scale = 9.0
+
+[node name="FrontGrooveJoint" type="GrooveJoint2D" parent="."]
+position = Vector2(237, 31.0001)
+rotation = -0.496016
+node_a = NodePath("../..")
+node_b = NodePath("..")
+length = 55.0
+initial_offset = 30.0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+position = Vector2(16.9996, 24.0001)
+polygon = PackedVector2Array(213, 19, 303, 175, 332, 163, 234, 13)
+
+[node name="PinJoint2D" type="PinJoint2D" parent="."]
+position = Vector2(332, 184)
+node_a = NodePath("..")
+node_b = NodePath("WheelFront")
+
+[node name="WheelFront" parent="PinJoint2D" instance=ExtResource("1_rbxqx")]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(15.9996, 28.0001)
+texture = ExtResource("2_6n6bb")
+
+[node name="FrontSusJoint1" type="PinJoint2D" parent="."]
+position = Vector2(213, 73.0001)
+node_a = NodePath("../..")
+node_b = NodePath("..")
+softness = 0.1
+
+[node name="FrontSusJoint2" type="PinJoint2D" parent="."]
+position = Vector2(288, 39.0001)
+rotation = -0.496016
+node_a = NodePath("../..")
+node_b = NodePath("..")
+softness = 0.1

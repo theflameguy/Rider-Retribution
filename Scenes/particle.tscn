@@ -1,0 +1,47 @@
+[gd_scene load_steps=5 format=3 uid="uid://db0sgod3he2eg"]
+
+[ext_resource type="Texture2D" uid="uid://ev3yolm14on1" path="res://sprites/smoke.png" id="1_tqh2p"]
+
+[sub_resource type="Gradient" id="Gradient_jymfg"]
+offsets = PackedFloat32Array(0, 0.565836, 0.996441, 1)
+colors = PackedColorArray(0.695503, 0.695503, 0.695503, 1, 0.149275, 0.149275, 0.149275, 1, 0.762963, 0.762963, 0.762963, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_4y7hc"]
+gradient = SubResource("Gradient_jymfg")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_eha82"]
+lifetime_randomness = 0.11
+emission_shape = 1
+emission_sphere_radius = 37.95
+particle_flag_disable_z = true
+direction = Vector3(-1, 0, 0)
+spread = 30.0
+gravity = Vector3(0, -98, 0)
+initial_velocity_min = 100.0
+initial_velocity_max = 200.0
+angular_velocity_min = 100.0
+angular_velocity_max = 200.0
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+angle_min = -90.0
+angle_max = 90.0
+scale_min = 0.05
+scale_max = 0.4
+color_ramp = SubResource("GradientTexture1D_4y7hc")
+hue_variation_min = -1.0
+hue_variation_max = -1.0
+turbulence_noise_strength = 13.55
+turbulence_noise_scale = 10.0
+turbulence_noise_speed = Vector3(-2.665, 7.3, 0)
+
+[node name="ParticleEffect" type="Node2D" groups=["ParticleEffect"]]
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+modulate = Color(1, 1, 1, 0.513726)
+emitting = false
+amount = 25
+process_material = SubResource("ParticleProcessMaterial_eha82")
+texture = ExtResource("1_tqh2p")
+speed_scale = 2.0
+explosiveness = 0.44
+randomness = 0.17

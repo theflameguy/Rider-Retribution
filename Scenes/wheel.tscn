@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://dr5akk0e8iy5o"]
+
+[ext_resource type="Texture2D" uid="uid://bx50a13tgxpf" path="res://motor bikes/enduro/tire.png" id="1_v3b5w"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_uqdet"]
+radius = 115.434
+
+[node name="Wheel" type="RigidBody2D" groups=["Wheel"]]
+gravity_scale = 9.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource("CircleShape2D_uqdet")
+
+[node name="WheelSprite" type="Sprite2D" parent="."]
+texture = ExtResource("1_v3b5w")

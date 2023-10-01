@@ -1,0 +1,52 @@
+[gd_scene load_steps=2 format=3 uid="uid://dyelge0sp15b2"]
+
+[ext_resource type="Texture2D" uid="uid://b8p4wi24v732n" path="res://motor bikes/frontSus.png" id="2_e5yma"]
+
+[node name="Node2D" type="Node2D"]
+position = Vector2(322, 142)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(-11, 0)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+polygon = PackedVector2Array(-123, 10, -337, 314, 135, 403, 668, 366, 545, 74, 355, 101, 348, 287, -47, 263, -21, 8)
+
+[node name="Camera2D" type="Camera2D" parent="StaticBody2D"]
+zoom = Vector2(1.34, 1.34)
+
+[node name="RigidBody2D" type="RigidBody2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RigidBody2D"]
+polygon = PackedVector2Array(-155, -140, -101, -44, -20, -21, 27, -23, 336, -21, 316, -177)
+
+[node name="FrontSus" type="RigidBody2D" parent="RigidBody2D"]
+position = Vector2(-103, -4)
+mass = 0.01
+gravity_scale = 9.0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RigidBody2D/FrontSus"]
+polygon = PackedVector2Array(213, 19, 267, 172, 370, 150, 234, 13)
+
+[node name="Sprite2D" type="Sprite2D" parent="RigidBody2D/FrontSus"]
+texture = ExtResource("2_e5yma")
+
+[node name="GrooveJoint2D" type="GrooveJoint2D" parent="RigidBody2D/FrontSus"]
+position = Vector2(207, -25)
+rotation = -0.428722
+node_a = NodePath("../..")
+node_b = NodePath("..")
+length = 85.0
+initial_offset = 65.0
+
+[node name="FrontSusJoint1" type="PinJoint2D" parent="RigidBody2D/FrontSus"]
+position = Vector2(146, 27)
+node_a = NodePath("../..")
+node_b = NodePath("..")
+softness = 2.0
+
+[node name="FrontSusJoint2" type="PinJoint2D" parent="RigidBody2D/FrontSus"]
+position = Vector2(313, -21)
+rotation = -0.496016
+node_a = NodePath("../..")
+node_b = NodePath("..")
+softness = 2.0
