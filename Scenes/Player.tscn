@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://djm1x4rlyfk4x"]
+[gd_scene load_steps=8 format=3 uid="uid://djm1x4rlyfk4x"]
 
 [ext_resource type="PackedScene" uid="uid://dr5akk0e8iy5o" path="res://Scenes/wheel.tscn" id="1_8fnda"]
 [ext_resource type="Script" path="res://code/Player.gd" id="1_qnsl4"]
@@ -6,9 +6,10 @@
 [ext_resource type="Texture2D" uid="uid://bwg3tt2iastgt" path="res://motor bikes/bodySus.png" id="3_e0jwy"]
 [ext_resource type="PackedScene" uid="uid://db0sgod3he2eg" path="res://Scenes/particle.tscn" id="4_ruqd4"]
 [ext_resource type="Texture2D" uid="uid://biq5wck2eechc" path="res://motor bikes/bodyNofront.png" id="5_n6fpu"]
+[ext_resource type="PackedScene" uid="uid://dyuf6oey32cpt" path="res://Scenes/sword.tscn" id="7_bt2g6"]
 
 [node name="Player" type="RigidBody2D" groups=["Player"]]
-mass = 3.0
+mass = 5.0
 gravity_scale = 9.0
 script = ExtResource("1_qnsl4")
 
@@ -89,10 +90,13 @@ softness = 0.5
 texture = ExtResource("3_e0jwy")
 
 [node name="BulletSpawnMarker" type="Marker2D" parent="."]
-position = Vector2(399, 1)
+position = Vector2(549, 0)
 
 [node name="BikeSprite" type="Sprite2D" parent="."]
 texture = ExtResource("5_n6fpu")
 
 [node name="Particle" parent="." instance=ExtResource("4_ruqd4")]
 position = Vector2(-259, 284)
+
+[node name="Sword" parent="." instance=ExtResource("7_bt2g6")]
+position = Vector2(443, 0)

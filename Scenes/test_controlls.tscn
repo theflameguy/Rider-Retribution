@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://rvfnuafuf0ab"]
+
+[node name="TestControlls" type="CanvasLayer"]
+scale = Vector2(2.475, 2.475)
+transform = Transform2D(2.475, 0, 0, 2.475, 0, 0)
+
+[node name="Button" type="Button" parent="."]
+offset_left = 481.212
+offset_top = 13.9293
+offset_right = 584.212
+offset_bottom = 48.9293
+toggle_mode = true
+text = "Button"
+
+[node name="HSlider" type="HSlider" parent="."]
+offset_left = 481.8
+offset_top = 63.0469
+offset_right = 767.8
+offset_bottom = 82.0469
+value = 10.0
+
+[node name="CheckButton" type="CheckButton" parent="."]
+offset_left = 613.212
+offset_top = 12.9293
+offset_right = 664.212
+offset_bottom = 49.9293
+
+[node name="MenuBar" type="MenuBar" parent="."]
+offset_left = 491.212
+offset_top = 99.9293
+offset_right = 579.212
+offset_bottom = 124.929

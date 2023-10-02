@@ -2,12 +2,16 @@ extends RigidBody2D
 
 const bullet_path = preload("res://Scenes/sword.tscn")
 const angular_vel_lim = 4.5
-const speed=60000
+var speed=80000
 const player_rot_speed=180000
-const max_speed=120
+const max_speed=220
 
 var wheels=[]
 var tim=0
+
+var x
+
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -19,6 +23,8 @@ func _physics_process(delta):
 	if Input.is_key_label_pressed(83):
 		if(wheels[1].angular_velocity<max_speed):
 			wheels[1].apply_torque_impulse(speed*delta*60)
+		else:
+			print("max")
 		for wheel in wheels: ##breaks
 			if(wheel.angular_velocity<0):
 				wheel.apply_torque_impulse(speed*delta*60*3)
@@ -39,12 +45,14 @@ func _physics_process(delta):
 			apply_torque_impulse(player_rot_speed*delta*60) ##bike front rot'n
 			
 		
-	if Input.is_key_label_pressed(4194305):
+	if Input.is_key_label_pressed(4194305): ##esc
 		get_tree().reload_current_scene()
 	if Input.is_key_label_pressed(4194309) and tim%2 == 0:
 		shoot()
 	tim%=20
 	tim+=1
+	
+	get_child(6).look_at(get_global_mouse_position())
 	
 	
 			

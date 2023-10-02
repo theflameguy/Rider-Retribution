@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://bb1m3lo0gdcyj"]
+
+[ext_resource type="Texture2D" uid="uid://wliermqf7ssr" path="res://motor bikes/crosshair110.png" id="1_hcfun"]
+
+[node name="crossHair" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_hcfun")
